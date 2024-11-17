@@ -28,17 +28,17 @@ public class BuscarProdutoUnidade {
         return null; 
     }
 
-    public Object buscarPorId(int id) {
+    public Object buscarPorId(String id) {
    
         for (Object produto : listaProdutosCaixa.getProdutos()) {
             if (produto instanceof Alimentocios) {
                 Alimentocios alimenticio = (Alimentocios) produto;
-                if (alimenticio.getIdAlimenticios() == id) {
+                if (alimenticio.getIdAlimenticios().equals(id)) {
                     return alimenticio; 
                 }
             } else if (produto instanceof Eletronicos) {
                 Eletronicos eletronico = (Eletronicos) produto;
-                if (eletronico.getIdEletronicos() == id) {
+                if (eletronico.getIdEletronicos().equals(id)) {
                     return eletronico;
                 }
             }

@@ -1,8 +1,9 @@
 package componentes.controleEstoque.produtoComponentes.alimenticios;
 
 public class Alimentocios {
-
-    public int idAlimenticios;
+    private static int contador = 0;
+    private static String prefixo = "10.015.";
+    public String idAlimenticios;
     public String setor;
     public String nomeAlimenticios;
     public double valorAlimenticios;
@@ -11,14 +12,13 @@ public class Alimentocios {
 
     public Alimentocios(
 
-        int idAlimenticios, 
         String setor, 
         String nomeAlimenticios, 
         double valorAlimenticios,
         String validadeAlimenticios, 
         int quantidadeAlimenticios) {
             
-        this.idAlimenticios = idAlimenticios;
+        this.idAlimenticios = geraId();
         this.setor = setor;
         this.nomeAlimenticios = nomeAlimenticios;
         this.valorAlimenticios = valorAlimenticios;
@@ -26,12 +26,18 @@ public class Alimentocios {
         this.quantidadeAlimenticios = quantidadeAlimenticios;
     }
 
-    public int getIdAlimenticios() {
+    public String getIdAlimenticios() {
         return idAlimenticios;
     }
 
-    public void setIdAlimenticios(int idAlimenticios) {
+    public void setIdAlimenticios(String idAlimenticios) {
         this.idAlimenticios = idAlimenticios;
+    }
+
+    private String geraId(){
+        String incremento = String.format("%02d", contador);
+        contador++;
+        return prefixo + incremento;
     }
 
     public String getSetor() {

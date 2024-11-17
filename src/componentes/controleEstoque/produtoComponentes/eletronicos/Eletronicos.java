@@ -1,7 +1,9 @@
 package componentes.controleEstoque.produtoComponentes.eletronicos;
 
 public class Eletronicos {
-    public int idEletronicos;
+    private static int contador = 0;
+    private static String prefixo = "21.056.";
+    public String idEletronicos;
     public String setor;
     public String nomeEletronicos;
     public double valorEletronicos;
@@ -12,7 +14,6 @@ public class Eletronicos {
 
     public Eletronicos(
 
-        int idEletronicos, 
         String setor, 
         String nomeEletronicos, 
         double valorEletronicos,
@@ -20,13 +21,27 @@ public class Eletronicos {
         String marcaEletronicos, 
         int quantidadeEletronicos) {
             
-        this.idEletronicos = idEletronicos;
+        this.idEletronicos = geraId();
         this.setor = setor;
         this.nomeEletronicos = nomeEletronicos;
         this.valorEletronicos = valorEletronicos;
         this.garantiaEletronicos = garantiaEletronicos;
         this.marcaEletronicos = marcaEletronicos;
         this.quantidadeEletronicos = quantidadeEletronicos;
+    }
+
+    private String geraId(){
+        String incremento = String.format("%02d", contador);
+        contador++;
+        return prefixo + incremento;
+    }
+
+    public String getIdEletronicos() {
+        return idEletronicos;
+    }
+
+    public void setIdEletronicos(String idEletronicos) {
+        this.idEletronicos = idEletronicos;
     }
 
     public String getSetor() {
@@ -43,14 +58,6 @@ public class Eletronicos {
 
     public void setSetor(String setor) {
         this.setor = setor;
-    }
-
-    public int getIdEletronicos() {
-        return idEletronicos;
-    }
-
-    public void setIdEletronicos(int idEletronicos) {
-        this.idEletronicos = idEletronicos;
     }
 
     public String getNomeEletronicos() {

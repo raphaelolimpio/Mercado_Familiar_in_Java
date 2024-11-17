@@ -42,11 +42,11 @@ public class ReposicaoEstoqueAli {
 
         listarProdutos();
         System.out.print("Digite o ID do produto que deseja repor: ");
-        int idSelecionado = scanner.nextInt();
+        String idSelecionado = scanner.nextLine();
 
         Alimentocios produtoSelecionado = null;
         for (Alimentocios produto : listaAlimenticios) {
-            if (produto.getIdAlimenticios() == idSelecionado) {
+            if (produto.getIdAlimenticios().equals(idSelecionado)) {
                 produtoSelecionado = produto;
                 break;
             }
@@ -61,7 +61,13 @@ public class ReposicaoEstoqueAli {
         System.out.println("Quantidade atual: " + produtoSelecionado.getQuantidadeAlimenticios());
 
         System.out.print("Digite a quantidade a ser adicionada: ");
-        int quantidadeAdicional = scanner.nextInt();
+        int quantidadeAdicional;
+        try {
+            quantidadeAdicional = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Entrada inválida! Digite um número inteiro.");
+            return;
+        }
 
         if (quantidadeAdicional <= 0) {
             System.out.println("A quantidade adicional deve ser maior que zero.");
@@ -82,7 +88,7 @@ public class ReposicaoEstoqueAli {
         for (Object produto : listaProdutosAll.getProdutos()) {
             if (produto instanceof Alimentocios) {
                 Alimentocios alimenticio = (Alimentocios) produto;
-                if (alimenticio.getIdAlimenticios() == produtoAtualizado.getIdAlimenticios()) {
+                if (alimenticio.getIdAlimenticios().equals(produtoAtualizado.getIdAlimenticios())) {
                     alimenticio.setQuantidadeAlimenticios(produtoAtualizado.getQuantidadeAlimenticios());
                     break;
                 }

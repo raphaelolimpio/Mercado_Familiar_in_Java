@@ -32,6 +32,7 @@ public class ReposicaoEle {
     }
 
     // Método para selecionar um produto por ID e adicionar quantidade
+    @SuppressWarnings("unlikely-arg-type")
     public void atualizarQuantidade() {
         if (listaEletronicos.isEmpty()) {
             System.out.println("Nenhum produto disponível para reposição.");
@@ -46,7 +47,7 @@ public class ReposicaoEle {
 
         Eletronicos produtoSelecionado = null;
         for (Eletronicos produto : listaEletronicos) {
-            if (produto.getIdEletronicos() == idSelecionado) {
+            if (produto.getIdEletronicos().equals(idSelecionado)) {
                 produtoSelecionado = produto;
                 break;
             }
