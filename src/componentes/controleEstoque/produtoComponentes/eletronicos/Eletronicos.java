@@ -6,6 +6,7 @@ public class Eletronicos {
     public String nomeEletronicos;
     public double valorEletronicos;
     public String garantiaEletronicos;
+    public String marcaEletronicos;
     public int quantidadeEletronicos;
 
 
@@ -15,7 +16,8 @@ public class Eletronicos {
         String setor, 
         String nomeEletronicos, 
         double valorEletronicos,
-        String garantiaEletronicos, 
+        String garantiaEletronicos,
+        String marcaEletronicos, 
         int quantidadeEletronicos) {
             
         this.idEletronicos = idEletronicos;
@@ -23,11 +25,20 @@ public class Eletronicos {
         this.nomeEletronicos = nomeEletronicos;
         this.valorEletronicos = valorEletronicos;
         this.garantiaEletronicos = garantiaEletronicos;
+        this.marcaEletronicos = marcaEletronicos;
         this.quantidadeEletronicos = quantidadeEletronicos;
     }
 
     public String getSetor() {
         return setor;
+    }
+
+    public String getMarcaEletronicos() {
+        return marcaEletronicos;
+    }
+
+    public void setMarcaEletronicos(String marcaEletronicos) {
+        this.marcaEletronicos = marcaEletronicos;
     }
 
     public void setSetor(String setor) {
