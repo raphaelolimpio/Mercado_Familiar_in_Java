@@ -1,13 +1,11 @@
 package terminal.TerminalAdm;
 
 import sistema.administrativo.Administrativo;
-
-import java.util.List;
-import java.util.Scanner;
-
 import componentes.CaixaComponentes.operadorComponentes.buscarOperador.buscarOperador.BuscarOpNome.BuscarOpNome;
 import componentes.CaixaComponentes.operadorComponentes.buscarOperador.busrcarOperador.BuscarOpId.BuscarOpId;
 import componentes.CaixaComponentes.operadorComponentes.operador.Operador;
+import java.util.List;
+import java.util.Scanner;
 
 public class TerminalAdm {
     private Administrativo administrativo;
@@ -21,12 +19,9 @@ public class TerminalAdm {
         int opcao;
 
         do {
-            System.out.println("=== Menu Administrativo ===");
-            System.out.println("1. Gerar Relatório de Qualidade");
-            System.out.println("2. Gerar Relatório de Quantidade");
-            System.out.println("3. Cadastrar Novo Operador");
-            System.out.println("4. Buscar Operador");
-            System.out.println("5. Listar Operador");
+            System.out.println("=== Menu Principal ===");
+            System.out.println("1. Relatório");
+            System.out.println("2. Operador");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -34,23 +29,13 @@ public class TerminalAdm {
 
             switch (opcao) {
                 case 1:
-                    System.out.println("1. Relatório de Qualidade (Produtos Próximos da Validade)");
-                    administrativo.gerarRelatorioQualidade();
+                    exibirMenuRelatorios(scanner);
                     break;
                 case 2:
-                    System.out.println("2. Relatório de Quantidade (Estoque <= 5)");
-                    administrativo.gerarRelatorioQuantidade();
+                    exibirMenuOperadores(scanner);
                     break;
-                case 3:
-                    cadastrarOperador(scanner);
-                    break;
-                case 4:
-                    buscarOperador(scanner);
-                    break;
-                case 5: 
-                    listaOperador(scanner);
                 case 0:
-                    System.out.println("Saindo do menu de relatórios...");
+                    System.out.println("Saindo...");
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
@@ -60,6 +45,69 @@ public class TerminalAdm {
         scanner.close();
     }
 
+    private void exibirMenuRelatorios(Scanner scanner) {
+        System.out.println("=== Relatórios ===");
+        System.out.println("1. Relatório de Qualidade (Produtos Próximos da Validade)");
+        System.out.println("2. Relatório de Quantidade (Estoque <= 5)");
+        System.out.print("Escolha uma opção: ");
+        int opcaoRelatorio = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (opcaoRelatorio) {
+            case 1:
+                System.out.println("Gerando Relatório de Qualidade...");
+                administrativo.gerarRelatorioQualidade();
+                break;
+            case 2:
+                System.out.println("Gerando Relatório de Quantidade...");
+                administrativo.gerarRelatorioQuantidade();
+                break;
+            default:
+                System.out.println("Opção inválida. Voltando ao menu principal.");
+        }
+    }
+
+    private void exibirMenuOperadores(Scanner scanner) {
+        System.out.println("=== Operadores ===");
+        System.out.println("1. Cadastrar Novo Operador");
+        System.out.println("2. Buscar Operador");
+        System.out.println("3. Listar Operadores");
+        System.out.println("4. Deletar Operador");
+        System.out.print("Escolha uma opção: ");
+        int opcaoOperador = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (opcaoOperador) {
+            case 1:
+                cadastrarOperador(scanner);
+                break;
+            case 2:
+                buscarOperador(scanner);
+                break;
+            case 3:
+                listaOperador(scanner);
+                break;
+            case 4:
+                deletarOperador(scanner);
+                break;
+            default:
+                System.out.println("Opção inválida. Voltando ao menu principal.");
+        }
+    }
+
+    private void cadastrarOperador(Scanner scanner) {
+        System.out.println("=== Cadastro de Novo Operador ===");
+        System.out.print("Digite o nome do operador: ");
+        String nome = scanner.nextLine();
+        System.out.print("Digite o cargo do operador: ");
+        String cargo = scanner.nextLine();
+        System.out.print("Digite a carga horária do operador: ");
+        int cargaHoraria = scanner.nextInt();
+        scanner.nextLine();
+
+        administrativo.adicionarOperador(nome, cargo, cargaHoraria);
+    }
+
     private void buscarOperador(Scanner scanner) {
         System.out.println("=== Buscar Operador ===");
         System.out.println("Escolha o tipo de pesquisa:");
@@ -67,7 +115,7 @@ public class TerminalAdm {
         System.out.println("2. Buscar por ID");
         System.out.print("Escolha uma opção: ");
         int opcaoBusca = scanner.nextInt();
-        scanner.nextLine(); // Limpar o buffer de entrada
+        scanner.nextLine();
 
         List<Operador> listaOperadores = administrativo.obterListaOperadores();
 
@@ -88,33 +136,7 @@ public class TerminalAdm {
         }
     }
 
-    private void exibirResultadoBusca(Operador operador) {
-        if (operador != null) {
-            System.out.println("Operador encontrado: ");
-            System.out.println("Nome: " + operador.getNomeOperador());
-            System.out.println("Cargo: " + operador.getCargo());
-            System.out.println("Carga Horária: " + operador.getCargaHoraria());
-        } else {
-            System.out.println("Operador não encontrado.");
-        }
-    }
-
-    private void cadastrarOperador(Scanner scanner) {
-
-        System.out.println("=== Cadastro de Novo Operador ===");
-        System.out.print("Digite o nome do operador: ");
-        String nome = scanner.nextLine();
-        System.out.print("Digite o cargo do operador: ");
-        String cargo = scanner.nextLine();
-        System.out.print("Digite a carga horária do operador: ");
-        int cargaHoraria = scanner.nextInt();
-        scanner.nextLine(); 
-        administrativo.adicionarOperador(nome, cargo, cargaHoraria);
-        System.out.println("Operador cadastrado com sucesso!");
-    }
-
     private void listaOperador(Scanner scanner) {
-        // Chama o método obterListaOperadores para obter a lista
         List<Operador> listaOperadores = administrativo.obterListaOperadores();
 
         // Exibe a lista de operadores
@@ -131,7 +153,21 @@ public class TerminalAdm {
             }
         }
     }
-    
 
+    private void deletarOperador(Scanner scanner) {
+        System.out.println("=== Deletar Operador ===");
+        administrativo.removerOperador(scanner);
 
+    }
+
+    private void exibirResultadoBusca(Operador operador) {
+        if (operador != null) {
+            System.out.println("Operador encontrado: ");
+            System.out.println("Nome: " + operador.getNomeOperador());
+            System.out.println("Cargo: " + operador.getCargo());
+            System.out.println("Carga Horária: " + operador.getCargaHoraria());
+        } else {
+            System.out.println("Operador não encontrado.");
+        }
+    }
 }

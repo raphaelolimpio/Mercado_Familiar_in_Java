@@ -2,12 +2,14 @@ package sistema.administrativo;
 
 import componentes.CaixaComponentes.operadorComponentes.cadastroOperador.CadastroOperador;
 import componentes.CaixaComponentes.operadorComponentes.operador.Operador;
+import componentes.CaixaComponentes.operadorComponentes.removerOperador.RemoverOperador;
 import componentes.controleEstoque.produtoComponentes.alimenticios.Alimentocios;
 import componentes.controleEstoque.produtoComponentes.listaProdutosAll.ListaProdutosAll;
 import componentes.relatorio.relatorioQualidade.RelatorioQualidade;
 import componentes.relatorio.relatorioQuantidade.RelatorioQuantidade;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Administrativo {
     private RelatorioQualidade relatorioQualidade;
@@ -21,11 +23,10 @@ public class Administrativo {
         this.cadastroOperador = new CadastroOperador();
     }
 
-
-    public void adicionarOperador(String nomeOperador, String cargo, int cargaHoraria){
+    public void adicionarOperador(String nomeOperador, String cargo, int cargaHoraria) {
         Operador operador = new Operador(nomeOperador, cargo, cargaHoraria);
         cadastroOperador.adicionarOperador(operador);
-        System.out.println("Operadro Cadastrado com sucesso" );
+        System.out.println("Operadro Cadastrado com sucesso");
     }
 
     public void gerarRelatorioQualidade() {
@@ -36,7 +37,6 @@ public class Administrativo {
     public List<Operador> obterListaOperadores() {
         return listaOperadores;
     }
-
 
     public void gerarRelatorioQuantidade() {
         ListaProdutosAll listaProdutosAll = carregarListaProdutos();
@@ -50,7 +50,12 @@ public class Administrativo {
 
     private ListaProdutosAll carregarListaProdutos() {
 
-        return null; 
+        return null;
+    }
+
+    public void removerOperador(Scanner scanner) {
+        RemoverOperador removerOperador = new RemoverOperador(listaOperadores);
+        removerOperador.removerOperador(scanner);
     }
 
 }
