@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import componentes.controleEstoque.produtoComponentes.alimenticios.Alimentocios;
 import componentes.controleEstoque.produtoComponentes.eletronicos.Eletronicos;
+import componentes.controleEstoque.produtoComponentes.produto.Produto;
 
 public class EditarEstoque {
 
@@ -99,10 +100,10 @@ public class EditarEstoque {
     }
 
     // Método para selecionar um produto para edição
-    public void selecionarItemParaEditar(List<Object> produtos) {
+    public void selecionarItemParaEditar(List<Produto> listaProdutos) {
         System.out.println("Selecione o item para editar:");
-        for (int i = 0; i < produtos.size(); i++) {
-            Object produto = produtos.get(i);
+        for (int i = 0; i < listaProdutos.size(); i++) {
+            Object produto = listaProdutos.get(i);
             if (produto instanceof Alimentocios) {
                 System.out.println((i + 1) + ". Alimentício: " + ((Alimentocios) produto).getNomeAlimenticios());
             } else if (produto instanceof Eletronicos) {
@@ -113,12 +114,12 @@ public class EditarEstoque {
         int escolha = scanner.nextInt();
         scanner.nextLine(); // Consumir quebra de linha
 
-        if (escolha < 1 || escolha > produtos.size()) {
+        if (escolha < 1 || escolha > listaProdutos.size()) {
             System.out.println("Opção inválida.");
             return;
         }
 
-        Object produtoSelecionado = produtos.get(escolha - 1);
+        Object produtoSelecionado = listaProdutos.get(escolha - 1);
         if (produtoSelecionado instanceof Alimentocios) {
             editarAlimenticio((Alimentocios) produtoSelecionado);
         } else if (produtoSelecionado instanceof Eletronicos) {

@@ -25,7 +25,7 @@ public class ReposicaoEle {
 
         System.out.println("Produtos Eletrônicos Disponíveis:");
         for (Eletronicos produto : listaEletronicos) {
-            System.out.println("- ID: " + produto.getIdEletronicos() +
+            System.out.println("- ID: " + produto.getIdProduto() +
                     ", Nome: " + produto.getNomeEletronicos() +
                     ", Quantidade: " + produto.getQuantidadeEletronicos());
         }
@@ -47,7 +47,7 @@ public class ReposicaoEle {
 
         Eletronicos produtoSelecionado = null;
         for (Eletronicos produto : listaEletronicos) {
-            if (produto.getIdEletronicos().equals(idSelecionado)) {
+            if (produto.getIdProduto().equals(idSelecionado)) {
                 produtoSelecionado = produto;
                 break;
             }
@@ -83,7 +83,7 @@ public class ReposicaoEle {
         for (Object produto : listaProdutosAll.getProdutos()) {
             if (produto instanceof Eletronicos) {
                 Eletronicos eletronico = (Eletronicos) produto;
-                if (eletronico.getIdEletronicos() == produtoAtualizado.getIdEletronicos()) {
+                if (eletronico.getIdProduto() == produtoAtualizado.getIdProduto()) {
                     eletronico.setQuantidadeEletronicos(produtoAtualizado.getQuantidadeEletronicos());
                     break;
                 }

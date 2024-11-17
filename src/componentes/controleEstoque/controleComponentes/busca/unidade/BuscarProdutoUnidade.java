@@ -38,7 +38,7 @@ public class BuscarProdutoUnidade {
                 }
             } else if (produto instanceof Eletronicos) {
                 Eletronicos eletronico = (Eletronicos) produto;
-                if (eletronico.getIdEletronicos().equals(id)) {
+                if (eletronico.getIdProduto().equals(id)) {
                     return eletronico;
                 }
             }

@@ -15,9 +15,9 @@ public class RemoveProdutoEstoque {
 
         for (Object produto : listaProdutos.getProdutos()) {
             if (produto instanceof componentes.controleEstoque.produtoComponentes.alimenticios.Alimentocios) {
-                componentes.controleEstoque.produtoComponentes.alimenticios.Alimentocios alimentocio = (componentes.controleEstoque.produtoComponentes.alimenticios.Alimentocios) produto;
-                if (alimentocio.getNomeAlimenticios().equalsIgnoreCase(nome)) {
-                    produtoRemover = alimentocio;
+                componentes.controleEstoque.produtoComponentes.alimenticios.Alimentocios alimenticio = (componentes.controleEstoque.produtoComponentes.alimenticios.Alimentocios) produto;
+                if (alimenticio.getNomeAlimenticios().equalsIgnoreCase(nome)) {
+                    produtoRemover = alimenticio;
                     break;
                 }
             } else if (produto instanceof componentes.controleEstoque.produtoComponentes.eletronicos.Eletronicos) {
@@ -28,6 +28,7 @@ public class RemoveProdutoEstoque {
                 }
             }
         }
+        
         if (produtoRemover != null) {
             listaProdutos.getProdutos().remove(produtoRemover);
             System.out.println("Produto removido: " + produtoRemover.toString());
@@ -36,8 +37,5 @@ public class RemoveProdutoEstoque {
             System.out.println("Produto não encontrado: " + nome);
             return false;
         }
-
     }
-
-    
 }

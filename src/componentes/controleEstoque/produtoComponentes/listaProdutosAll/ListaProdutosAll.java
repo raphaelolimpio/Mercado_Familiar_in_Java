@@ -5,18 +5,20 @@ import java.util.List;
 
 import componentes.controleEstoque.produtoComponentes.alimenticios.Alimentocios;
 import componentes.controleEstoque.produtoComponentes.eletronicos.Eletronicos;
+import componentes.controleEstoque.produtoComponentes.produto.Produto;
+
 
 
 
 public class ListaProdutosAll {
 
-    public List<Object> produtos;
+    public List<Produto> produtos;
 
     public ListaProdutosAll() {
         produtos = new ArrayList<>();
     }
 
-    public void addProdutos(Object produto) {
+    public void addProdutos(Produto produto) {
         produtos.add(produto);
         System.out.println("produto adicionado: " + produto);
     }
@@ -47,7 +49,8 @@ public class ListaProdutosAll {
     }
     
 
-    public List<Object> getProdutos() {
+    public List<Produto> getProdutos() {
         return produtos;
     }
+
 }

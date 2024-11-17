@@ -1,26 +1,34 @@
 package componentes.controleEstoque.produtoComponentes.eletronicos;
 
-public class Eletronicos {
+import componentes.controleEstoque.produtoComponentes.produto.Produto;
+
+public class Eletronicos implements Produto {
     private static int contador = 0;
     private static String prefixo = "21.056.";
-    public String idEletronicos;
-    public String setor;
-    public String nomeEletronicos;
-    public double valorEletronicos;
-    public String garantiaEletronicos;
-    public String marcaEletronicos;
-    public int quantidadeEletronicos;
+    
+    private String idEletronicos;
+    private String setor;
+    public String getIdEletronicos() {
+        return idEletronicos;
+    }
 
+    public void setIdEletronicos(String idEletronicos) {
+        this.idEletronicos = idEletronicos;
+    }
+
+    private String nomeEletronicos;
+    private double valorEletronicos;
+    private String garantiaEletronicos;
+    private String marcaEletronicos;
+    private int quantidadeEletronicos;
 
     public Eletronicos(
-
-        String setor, 
-        String nomeEletronicos, 
-        double valorEletronicos,
-        String garantiaEletronicos,
-        String marcaEletronicos, 
-        int quantidadeEletronicos) {
-            
+            String setor,
+            String nomeEletronicos,
+            double valorEletronicos,
+            String garantiaEletronicos,
+            String marcaEletronicos,
+            int quantidadeEletronicos) {
         this.idEletronicos = geraId();
         this.setor = setor;
         this.nomeEletronicos = nomeEletronicos;
@@ -30,30 +38,34 @@ public class Eletronicos {
         this.quantidadeEletronicos = quantidadeEletronicos;
     }
 
-    private String geraId(){
+    private String geraId() {
         String incremento = String.format("%02d", contador);
         contador++;
         return prefixo + incremento;
     }
 
-    public String getIdEletronicos() {
+    @Override
+    public String getIdProduto() {
         return idEletronicos;
     }
 
-    public void setIdEletronicos(String idEletronicos) {
-        this.idEletronicos = idEletronicos;
+    @Override
+    public String getNomeProduto() {
+        return nomeEletronicos;
+    }
+
+    @Override
+    public double getValorProduto() {
+        return valorEletronicos;
+    }
+
+    @Override
+    public int getQuantidadeProduto() {
+        return quantidadeEletronicos;
     }
 
     public String getSetor() {
         return setor;
-    }
-
-    public String getMarcaEletronicos() {
-        return marcaEletronicos;
-    }
-
-    public void setMarcaEletronicos(String marcaEletronicos) {
-        this.marcaEletronicos = marcaEletronicos;
     }
 
     public void setSetor(String setor) {
@@ -84,6 +96,14 @@ public class Eletronicos {
         this.garantiaEletronicos = garantiaEletronicos;
     }
 
+    public String getMarcaEletronicos() {
+        return marcaEletronicos;
+    }
+
+    public void setMarcaEletronicos(String marcaEletronicos) {
+        this.marcaEletronicos = marcaEletronicos;
+    }
+
     public int getQuantidadeEletronicos() {
         return quantidadeEletronicos;
     }
@@ -91,5 +111,4 @@ public class Eletronicos {
     public void setQuantidadeEletronicos(int quantidadeEletronicos) {
         this.quantidadeEletronicos = quantidadeEletronicos;
     }
-
 }

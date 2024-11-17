@@ -1,23 +1,25 @@
 package componentes.controleEstoque.produtoComponentes.alimenticios;
 
-public class Alimentocios {
+import componentes.controleEstoque.produtoComponentes.produto.Produto;
+
+public class Alimentocios implements Produto {
     private static int contador = 0;
     private static String prefixo = "10.015.";
-    public String idAlimenticios;
-    public String setor;
-    public String nomeAlimenticios;
-    public double valorAlimenticios;
-    public String validadeAlimenticios;
-    public int quantidadeAlimenticios;
+    private String idAlimenticios;
+    private String setor;
+    private String nomeAlimenticios;
+    private double valorAlimenticios;
+    private String validadeAlimenticios;
+    private int quantidadeAlimenticios;
 
     public Alimentocios(
 
-        String setor, 
-        String nomeAlimenticios, 
-        double valorAlimenticios,
-        String validadeAlimenticios, 
-        int quantidadeAlimenticios) {
-            
+            String setor,
+            String nomeAlimenticios,
+            double valorAlimenticios,
+            String validadeAlimenticios,
+            int quantidadeAlimenticios) {
+
         this.idAlimenticios = geraId();
         this.setor = setor;
         this.nomeAlimenticios = nomeAlimenticios;
@@ -34,7 +36,7 @@ public class Alimentocios {
         this.idAlimenticios = idAlimenticios;
     }
 
-    private String geraId(){
+    private String geraId() {
         String incremento = String.format("%02d", contador);
         contador++;
         return prefixo + incremento;
@@ -80,5 +82,24 @@ public class Alimentocios {
         this.quantidadeAlimenticios = quantidadeAlimenticios;
     }
 
+    @Override
+    public String getIdProduto() {
+        return idAlimenticios;
+    }
+
+    @Override
+    public String getNomeProduto() {
+        return nomeAlimenticios;
+    }
+
+    @Override
+    public double getValorProduto() {
+        return valorAlimenticios;
+    }
+
+    @Override
+    public int getQuantidadeProduto() {
+        return quantidadeAlimenticios;
+    }
 
 }
