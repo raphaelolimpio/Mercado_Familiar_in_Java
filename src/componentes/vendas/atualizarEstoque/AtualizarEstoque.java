@@ -1,13 +1,10 @@
 package componentes.vendas.atualizarEstoque;
 
-import componentes.controleEstoque.produtoComponentes.alimenticios.Alimentocios;
-import componentes.controleEstoque.produtoComponentes.eletronicos.Eletronicos;
 import componentes.controleEstoque.produtoComponentes.listaProdutosAll.ListaProdutosAll;
+import componentes.controleEstoque.produtoComponentes.produto.Produto;
 import componentes.vendas.ListaPrdutosCaixa.ListaProdutosCaixa;
 
-
 public class AtualizarEstoque {
-
     private ListaProdutosAll estoque;
 
     public AtualizarEstoque(ListaProdutosAll estoque) {
@@ -15,54 +12,19 @@ public class AtualizarEstoque {
     }
 
     public void atualizarEstoque(ListaProdutosCaixa produtosCaixa) {
-        for (Object produtoCaixa : produtosCaixa.getProdutos()) {
-            if (produtoCaixa instanceof Alimentocios) {
-                Alimentocios alimenticioCaixa = (Alimentocios) produtoCaixa;
-                atualizarAlimenticio(alimenticioCaixa);
-            } else if (produtoCaixa instanceof Eletronicos) {
-                Eletronicos eletronicoCaixa = (Eletronicos) produtoCaixa;
-                atualizarEletronico(eletronicoCaixa);
-            } else {
-                System.out.println("Tipo de produto desconhecido: " + produtoCaixa);
-            }
-        }
-    }
-
-    private void atualizarAlimenticio(Alimentocios alimenticioCaixa) {
-        for (Object produtoEstoque : estoque.getProdutos()) {
-            if (produtoEstoque instanceof Alimentocios) {
-                Alimentocios alimenticioEstoque = (Alimentocios) produtoEstoque;
-                if (alimenticioEstoque.getIdAlimenticios() == alimenticioCaixa.getIdAlimenticios()) {
-                    int novaQuantidade = alimenticioEstoque.getQuantidadeAlimenticios() - alimenticioCaixa.getQuantidadeAlimenticios();
+        for (Produto produtoCaixa : produtosCaixa.getProdutos()) {
+            for (Produto produtoEstoque : estoque.getProdutos()) {
+                if (produtoCaixa.getIdProduto().equals(produtoEstoque.getIdProduto())) {
+                    int novaQuantidade = (int) (produtoEstoque.getQuantidadeProduto() - produtoCaixa.getQuantidadeProduto());
                     if (novaQuantidade < 0) {
-                        System.out.println("Quantidade insuficiente para o produto: " + alimenticioEstoque.getNomeAlimenticios());
+                        System.out.println("Quantidade insuficiente para o produto: " + produtoEstoque.getNomeProduto());
                     } else {
-                        alimenticioEstoque.setQuantidadeAlimenticios(novaQuantidade);
-                        System.out.println("Atualizado: " + alimenticioEstoque.getNomeAlimenticios() + " - Nova quantidade: " + novaQuantidade);
+                        produtoEstoque.setQuantidadeProduto(novaQuantidade);
+                        System.out.println("Estoque atualizado: " + produtoEstoque.getNomeProduto() + " - Nova quantidade: " + novaQuantidade);
                     }
-                    return;
+                    break;
                 }
             }
         }
-        System.out.println("Produto alimentício não encontrado no estoque: " + alimenticioCaixa.getNomeAlimenticios());
-    }
-
-    private void atualizarEletronico(Eletronicos eletronicoCaixa) {
-        for (Object produtoEstoque : estoque.getProdutos()) {
-            if (produtoEstoque instanceof Eletronicos) {
-                Eletronicos eletronicoEstoque = (Eletronicos) produtoEstoque;
-                if (eletronicoEstoque.getIdEletronicos() == eletronicoCaixa.getIdEletronicos()) {
-                    int novaQuantidade = eletronicoEstoque.getQuantidadeEletronicos() - eletronicoCaixa.getQuantidadeEletronicos();
-                    if (novaQuantidade < 0) {
-                        System.out.println("Quantidade insuficiente para o produto: " + eletronicoEstoque.getNomeEletronicos());
-                    } else {
-                        eletronicoEstoque.setQuantidadeEletronicos(novaQuantidade);
-                        System.out.println("Atualizado: " + eletronicoEstoque.getNomeEletronicos() + " - Nova quantidade: " + novaQuantidade);
-                    }
-                    return;
-                }
-            }
-        }
-        System.out.println("Produto eletrônico não encontrado no estoque: " + eletronicoCaixa.getNomeEletronicos());
     }
 }

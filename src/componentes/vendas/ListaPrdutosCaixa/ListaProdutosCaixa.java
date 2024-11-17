@@ -3,15 +3,17 @@ package componentes.vendas.ListaPrdutosCaixa;
 import java.util.ArrayList;
 import java.util.List;
 
+import componentes.controleEstoque.produtoComponentes.produto.Produto;
+
 public class ListaProdutosCaixa {
     
-    public List<Object> produtos;
+    public List<Produto> produtos;
 
     public ListaProdutosCaixa() {
         produtos = new ArrayList<>();
     }
 
-    public void addProdutos(Object produto) {
+    public void addProdutos(Produto produto, int quantidade) {
         produtos.add(produto);
         System.out.println("produto adicionado: " + produto);
     }
@@ -23,7 +25,7 @@ public class ListaProdutosCaixa {
 
     }
 
-    public List<Object> getProdutos() {
+    public List<Produto> getProdutos() {
         return produtos;
     }
 

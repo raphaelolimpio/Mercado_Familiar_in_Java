@@ -21,6 +21,7 @@ public class Eletronicos implements Produto {
     private String garantiaEletronicos;
     private String marcaEletronicos;
     private int quantidadeEletronicos;
+    private float quantidadeProduto;
 
     public Eletronicos(
             String setor,
@@ -28,6 +29,7 @@ public class Eletronicos implements Produto {
             double valorEletronicos,
             String garantiaEletronicos,
             String marcaEletronicos,
+            float quantidadeProduto,
             int quantidadeEletronicos) {
         this.idEletronicos = geraId();
         this.setor = setor;
@@ -36,6 +38,7 @@ public class Eletronicos implements Produto {
         this.garantiaEletronicos = garantiaEletronicos;
         this.marcaEletronicos = marcaEletronicos;
         this.quantidadeEletronicos = quantidadeEletronicos;
+        this.quantidadeProduto = quantidadeProduto;
     }
 
     private String geraId() {
@@ -60,7 +63,7 @@ public class Eletronicos implements Produto {
     }
 
     @Override
-    public int getQuantidadeProduto() {
+    public float getQuantidadeProduto() {
         return quantidadeEletronicos;
     }
 
@@ -110,5 +113,10 @@ public class Eletronicos implements Produto {
 
     public void setQuantidadeEletronicos(int quantidadeEletronicos) {
         this.quantidadeEletronicos = quantidadeEletronicos;
+    }
+
+    @Override
+    public void setQuantidadeProduto(float quantidade) {
+        this.quantidadeProduto = quantidade;
     }
 }

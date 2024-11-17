@@ -11,6 +11,7 @@ public class Alimentocios implements Produto {
     private double valorAlimenticios;
     private String validadeAlimenticios;
     private int quantidadeAlimenticios;
+    private float quantidadeProduto;
 
     public Alimentocios(
 
@@ -18,6 +19,7 @@ public class Alimentocios implements Produto {
             String nomeAlimenticios,
             double valorAlimenticios,
             String validadeAlimenticios,
+            float quantidadeProduto,
             int quantidadeAlimenticios) {
 
         this.idAlimenticios = geraId();
@@ -26,6 +28,7 @@ public class Alimentocios implements Produto {
         this.valorAlimenticios = valorAlimenticios;
         this.validadeAlimenticios = validadeAlimenticios;
         this.quantidadeAlimenticios = quantidadeAlimenticios;
+        this.quantidadeProduto = quantidadeProduto;
     }
 
     public String getIdAlimenticios() {
@@ -98,8 +101,13 @@ public class Alimentocios implements Produto {
     }
 
     @Override
-    public int getQuantidadeProduto() {
-        return quantidadeAlimenticios;
+    public void setQuantidadeProduto(float quantidade) {
+        this.quantidadeProduto = quantidade;
+    }
+
+    @Override
+    public float getQuantidadeProduto() {
+        return quantidadeProduto;
     }
 
 }

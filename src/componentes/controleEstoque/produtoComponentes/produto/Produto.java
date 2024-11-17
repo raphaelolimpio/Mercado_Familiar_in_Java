@@ -5,6 +5,7 @@ public interface Produto {
     String getIdProduto();
     String getNomeProduto();
     double getValorProduto();
-    int getQuantidadeProduto();
+    float getQuantidadeProduto();
+    void setQuantidadeProduto(float quantidade);
 
 }
