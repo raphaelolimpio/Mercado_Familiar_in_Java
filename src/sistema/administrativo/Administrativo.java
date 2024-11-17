@@ -9,8 +9,8 @@ import componentes.CaixaComponentes.operadorComponentes.operador.Operador;
 import componentes.CaixaComponentes.operadorComponentes.removerOperador.RemoverOperador;
 import componentes.controleEstoque.produtoComponentes.alimenticios.Alimentocios;
 import componentes.controleEstoque.produtoComponentes.listaProdutosAll.ListaProdutosAll;
+import componentes.relatorio.relatorioFaturamento.FaturamentoDiario.FaturamentoDiario;
 import componentes.relatorio.relatorioFaturamento.faturamentoAbaixo.FaturamentoAbaixo;
-import componentes.relatorio.relatorioFaturamento.faturamentoDiario.faturamentoDiario.FaturamentoDiario;
 import componentes.relatorio.relatorioQualidade.RelatorioQualidade;
 import componentes.relatorio.relatorioQuantidade.RelatorioQuantidade;
 
@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Administrativo {
+    private List<Operador> listaOperador;
     private RelatorioQualidade relatorioQualidade;
     private RelatorioQuantidade relatorioQuantidade;
     private CadastroOperador cadastroOperador;
@@ -36,10 +37,13 @@ public class Administrativo {
         this.faturamentoDiario = new FaturamentoDiario();
     }
 
-    public void adicionarOperador(String nomeOperador, String cargo, int cargaHoraria) {
-        Operador operador = new Operador(nomeOperador, cargo, cargaHoraria);
-        cadastroOperador.adicionarOperador(operador);
-        System.out.println("Operadro Cadastrado com sucesso");
+    public List<Operador> getListaOperador() {
+        return listaOperador;
+    }
+
+    public void adicionarOperador(String nome, String cargo, int cargaHoraria) {
+        Operador novoOperador = new Operador(nome, cargo, cargaHoraria);
+        listaOperador.add(novoOperador);
     }
 
     public void gerarRelatorioQualidade() {
@@ -57,12 +61,10 @@ public class Administrativo {
     }
 
     private List<Alimentocios> carregarListaAlimenticios() {
-
         return null;
     }
 
     private ListaProdutosAll carregarListaProdutos() {
-
         return null;
     }
 
@@ -70,6 +72,8 @@ public class Administrativo {
         RemoverOperador removerOperador = new RemoverOperador(listaOperadores);
         removerOperador.removerOperador(scanner);
     }
+
+    
 
     public void cadastrarCaixa(Caixa caixa) {
         cadastroCaixa.adicionarCaixa(caixa);

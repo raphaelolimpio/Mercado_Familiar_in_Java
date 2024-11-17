@@ -1,6 +1,7 @@
 package terminal.TerminalAdm;
 
 import sistema.administrativo.Administrativo;
+import componentes.CaixaComponentes.caixaMercado.cadastroCaixa.CadastroCaixa;
 import componentes.CaixaComponentes.caixaMercado.caixa.Caixa;
 import componentes.CaixaComponentes.operadorComponentes.buscarOperador.buscarOperador.BuscarOpNome.BuscarOpNome;
 import componentes.CaixaComponentes.operadorComponentes.buscarOperador.busrcarOperador.BuscarOpId.BuscarOpId;
@@ -10,6 +11,7 @@ import java.util.Scanner;
 
 public class TerminalAdm {
     private Administrativo administrativo;
+    private CadastroCaixa cadastroCaixa;
 
     public TerminalAdm() {
         this.administrativo = new Administrativo();
@@ -20,7 +22,7 @@ public class TerminalAdm {
         int opcao;
 
         do {
-            System.out.println("=== Menu Principal ===");
+            System.out.println("=== Menu Principal ADM ===");
             System.out.println("1. Relatório");
             System.out.println("2. Operador");
             System.out.println("3. Caixa");
@@ -68,7 +70,7 @@ public class TerminalAdm {
                 System.out.println("Gerando Relatório de Quantidade...");
                 administrativo.gerarRelatorioQuantidade();
                 break;
-                case 3:
+            case 3:
                 System.out.println("Gerando Relatório de Faturamento Diario...");
                 administrativo.gerarRelatorioFaturamentoDiario();
                 break;
@@ -118,9 +120,36 @@ public class TerminalAdm {
         System.out.print("Digite a carga horária do operador: ");
         int cargaHoraria = scanner.nextInt();
         scanner.nextLine();
-
         administrativo.adicionarOperador(nome, cargo, cargaHoraria);
+    
+    
+        List<Caixa> caixasDisponiveis = cadastroCaixa.getListaCaixa().stream()
+                .filter(Caixa::estaDisponivel)
+                .toList();
+    
+        if (caixasDisponiveis.isEmpty()) {
+            System.out.println("Não há caixas disponíveis para atribuir.");
+        } else {
+            System.out.println("Selecione uma caixa para atribuir o operador:");
+            for (int i = 0; i < caixasDisponiveis.size(); i++) {
+                Caixa caixa = caixasDisponiveis.get(i);
+                System.out.println((i + 1) + ". Caixa nº " + caixa.getNumerocaixa() + " (Valor no caixa: " + caixa.getValorCaixa() + ")");
+            }
+    
+            int escolha = scanner.nextInt();
+            scanner.nextLine();
+    
+            if (escolha > 0 && escolha <= caixasDisponiveis.size()) {
+                Caixa caixaSelecionada = caixasDisponiveis.get(escolha - 1);
+                Operador operador = administrativo.getListaOperador().get(administrativo.getListaOperador().size() - 1); // Último operador adicionado
+                caixaSelecionada.atribuirOperador(operador);
+                System.out.println("Operador " + operador.getNomeOperador() + " atribuído à Caixa nº " + caixaSelecionada.getNumerocaixa());
+            } else {
+                System.out.println("Escolha inválida.");
+            }
+        }
     }
+    
 
     private void exibirMenuCaixa(Scanner scanner) {
         System.out.println("=== Menu Caixa ===");

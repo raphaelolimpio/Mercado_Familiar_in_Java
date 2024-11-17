@@ -15,7 +15,7 @@ public class CadastroCaixa {
 
     public void adicionarCaixa(Caixa caixa) {
         listcaCaixa.add(caixa);
-        System.out.println("Produto alimentício adicionado: " + caixa.getNumerocaixa());
+        System.out.println("Caixa adicionada: " + caixa.getNumerocaixa());
     }
 
     public List<Caixa> getListaCaixa() {

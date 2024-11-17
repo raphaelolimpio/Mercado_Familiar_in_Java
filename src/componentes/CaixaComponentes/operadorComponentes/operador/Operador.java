@@ -1,11 +1,14 @@
 package componentes.CaixaComponentes.operadorComponentes.operador;
 
+import componentes.CaixaComponentes.caixaMercado.caixa.Caixa;
+
 public class Operador {
     private static int contador = 1;
     private int idOperador;
     private String nomeOperador;
     private String cargo;
     private int CargaHoraria;
+    private Caixa caixa;
 
     public Operador(
         String nomeOperador, 
@@ -15,7 +18,16 @@ public class Operador {
         this.idOperador = geraId();
         this.nomeOperador = nomeOperador;
         this.cargo = cargo;
+        this.caixa = null;
         CargaHoraria = cargaHoraria;
+    }
+
+    public Caixa getCaixa() {
+        return caixa;
+    }
+
+    public void setCaixa(Caixa caixa) {
+        this.caixa = caixa;
     }
 
     private static int geraId() {
