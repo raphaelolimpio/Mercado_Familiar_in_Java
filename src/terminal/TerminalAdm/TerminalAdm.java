@@ -1,6 +1,7 @@
 package terminal.TerminalAdm;
 
 import sistema.administrativo.Administrativo;
+import componentes.CaixaComponentes.caixaMercado.caixa.Caixa;
 import componentes.CaixaComponentes.operadorComponentes.buscarOperador.buscarOperador.BuscarOpNome.BuscarOpNome;
 import componentes.CaixaComponentes.operadorComponentes.buscarOperador.busrcarOperador.BuscarOpId.BuscarOpId;
 import componentes.CaixaComponentes.operadorComponentes.operador.Operador;
@@ -22,6 +23,7 @@ public class TerminalAdm {
             System.out.println("=== Menu Principal ===");
             System.out.println("1. Relatório");
             System.out.println("2. Operador");
+            System.out.println("3. Caixa");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -34,6 +36,8 @@ public class TerminalAdm {
                 case 2:
                     exibirMenuOperadores(scanner);
                     break;
+                case 3:
+                    exibirMenuCaixa(scanner);
                 case 0:
                     System.out.println("Saindo...");
                     break;
@@ -49,6 +53,8 @@ public class TerminalAdm {
         System.out.println("=== Relatórios ===");
         System.out.println("1. Relatório de Qualidade (Produtos Próximos da Validade)");
         System.out.println("2. Relatório de Quantidade (Estoque <= 5)");
+        System.out.println("3. Relatório de Faturamento Diario");
+        System.out.println("4. Relatório de Faturamento Abaixo");
         System.out.print("Escolha uma opção: ");
         int opcaoRelatorio = scanner.nextInt();
         scanner.nextLine();
@@ -61,6 +67,14 @@ public class TerminalAdm {
             case 2:
                 System.out.println("Gerando Relatório de Quantidade...");
                 administrativo.gerarRelatorioQuantidade();
+                break;
+                case 3:
+                System.out.println("Gerando Relatório de Faturamento Diario...");
+                administrativo.gerarRelatorioFaturamentoDiario();
+                break;
+            case 4:
+                System.out.println("Gerando Relatório de Faturamento Abaixo...");
+                administrativo.gerarRelatorioFaturamentoAbaixo();
                 break;
             default:
                 System.out.println("Opção inválida. Voltando ao menu principal.");
@@ -106,6 +120,72 @@ public class TerminalAdm {
         scanner.nextLine();
 
         administrativo.adicionarOperador(nome, cargo, cargaHoraria);
+    }
+
+    private void exibirMenuCaixa(Scanner scanner) {
+        System.out.println("=== Menu Caixa ===");
+        System.out.println("1. Criar Caixa");
+        System.out.println("2. Buscar Caixa");
+        System.out.println("3. Listar Caixas");
+        System.out.print("Escolha uma opção: ");
+        int opcaoCaixa = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (opcaoCaixa) {
+            case 1:
+                criarCaixa(scanner);
+                break;
+            case 2:
+                buscarCaixa(scanner);
+                break;
+            case 3:
+                listarCaixas();
+                break;
+            default:
+                System.out.println("Opção inválida. Voltando ao menu principal.");
+        }
+    }
+
+    private void criarCaixa(Scanner scanner) {
+        System.out.println("=== Criar Caixa ===");
+        System.out.print("Digite o número do caixa: ");
+        int numeroCaixa = scanner.nextInt();
+        System.out.print("Digite o valor do caixa: ");
+        double valorCaixa = scanner.nextDouble();
+        scanner.nextLine(); // Clear buffer
+
+        Caixa caixa = new Caixa(0, numeroCaixa, valorCaixa); // ID é gerado automaticamente
+        administrativo.cadastrarCaixa(caixa);
+    }
+
+    private void buscarCaixa(Scanner scanner) {
+        System.out.println("=== Buscar Caixa ===");
+        System.out.print("Digite o número do caixa: ");
+        int numeroCaixa = scanner.nextInt();
+        scanner.nextLine();
+
+        Caixa caixa = administrativo.buscarCaixa(numeroCaixa);
+        if (caixa != null) {
+            System.out.println("Caixa encontrado:");
+            System.out.println("Número: " + caixa.getNumerocaixa());
+            System.out.println("Valor: " + caixa.getValorCaixa());
+        } else {
+            System.out.println("Caixa não encontrado.");
+        }
+    }
+
+    private void listarCaixas() {
+        System.out.println("=== Listar Caixas ===");
+        List<Caixa> caixas = administrativo.obterListaCaixas();
+        if (caixas.isEmpty()) {
+            System.out.println("Nenhum caixa cadastrado.");
+        } else {
+            for (Caixa caixa : caixas) {
+                System.out.println("Número: " + caixa.getNumerocaixa());
+                System.out.println("Valor: " + caixa.getValorCaixa());
+                System.out.println("====================================");
+            }
+        }
     }
 
     private void buscarOperador(Scanner scanner) {
