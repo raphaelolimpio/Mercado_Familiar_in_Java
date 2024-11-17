@@ -3,9 +3,9 @@ package componentes.controleEstoque.controle.busca.setor;
 import java.util.ArrayList;
 import java.util.List;
 
-import componentes.caixa.venda.lista.todosProdutos.ListaProdutosAll;
 import componentes.controleEstoque.produto.alimenticios.Alimentocios;
 import componentes.controleEstoque.produto.eletronicos.Eletronicos;
+import componentes.controleEstoque.produto.listaProdutosAll.ListaProdutosAll;
 
 public class BuscarPrudutoSetor {
 

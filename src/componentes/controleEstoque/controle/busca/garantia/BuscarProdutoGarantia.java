@@ -3,8 +3,8 @@ package componentes.controleEstoque.controle.busca.garantia;
 import java.util.ArrayList;
 import java.util.List;
 
-import componentes.caixa.venda.lista.todosProdutos.ListaProdutosAll;
 import componentes.controleEstoque.produto.eletronicos.Eletronicos;
+import componentes.controleEstoque.produto.listaProdutosAll.ListaProdutosAll;
 
 public class BuscarProdutoGarantia {
     private ListaProdutosAll listaProdutosAll;

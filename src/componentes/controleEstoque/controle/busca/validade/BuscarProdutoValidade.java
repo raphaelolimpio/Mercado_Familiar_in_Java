@@ -3,8 +3,8 @@ package componentes.controleEstoque.controle.busca.validade;
 import java.util.ArrayList;
 import java.util.List;
 
-import componentes.caixa.venda.lista.todosProdutos.ListaProdutosAll;
 import componentes.controleEstoque.produto.alimenticios.Alimentocios;
+import componentes.controleEstoque.produto.listaProdutosAll.ListaProdutosAll;
 
 public class BuscarProdutoValidade {
      private ListaProdutosAll listaProdutosAll;

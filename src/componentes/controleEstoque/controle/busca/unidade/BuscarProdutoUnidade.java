@@ -1,5 +1,5 @@
 package componentes.controleEstoque.controle.busca.unidade;
-import componentes.CaixaGeral.venda.ListaPrdutosCaixa.ListaProdutosCaixa;
+import componentes.CaixaGeral.vendas.ListaPrdutosCaixa.ListaProdutosCaixa;
 import componentes.controleEstoque.produto.alimenticios.Alimentocios;
 import componentes.controleEstoque.produto.eletronicos.Eletronicos;
 
