@@ -1,21 +1,26 @@
 package componentes.CaixaComponentes.operadorComponentes.operador;
 
 public class Operador {
+    private static int contador = 1;
     private int idOperador;
     private String nomeOperador;
     private String cargo;
     private int CargaHoraria;
 
     public Operador(
-        int idOperador, 
         String nomeOperador, 
         String cargo, 
         int cargaHoraria) {
 
-        this.idOperador = idOperador;
+        this.idOperador = geraId();
         this.nomeOperador = nomeOperador;
         this.cargo = cargo;
         CargaHoraria = cargaHoraria;
+    }
+
+    private static int geraId() {
+        return contador++;
+
     }
 
     public String getCargo() {
