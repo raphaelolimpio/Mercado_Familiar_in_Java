@@ -1,10 +1,11 @@
 package componentes.controleEstoque.produto.cadastro;
 
-import componentes.controleEstoque.controle.lista.todosProdutos.ListaProdutosAll;
-import componentes.controleEstoque.produto.alimenticios.Alimentocios;
-import componentes.controleEstoque.produto.eletronicos.Eletronicos;
 import java.util.ArrayList;
 import java.util.List;
+
+import componentes.caixa.venda.lista.todosProdutos.ListaProdutosAll;
+import componentes.controleEstoque.produto.alimenticios.Alimentocios;
+import componentes.controleEstoque.produto.eletronicos.Eletronicos;
 
 public class Cadastro {
 

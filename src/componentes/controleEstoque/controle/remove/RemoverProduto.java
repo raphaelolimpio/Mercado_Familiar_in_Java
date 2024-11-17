@@ -1,6 +1,6 @@
 package componentes.controleEstoque.controle.remove;
 
-import componentes.controleEstoque.controle.lista.produtosCaixa.ListaProdutosCaixa;
+import componentes.CaixaGeral.venda.ListaPrdutosCaixa.ListaProdutosCaixa;
 
 public class RemoverProduto {
 
