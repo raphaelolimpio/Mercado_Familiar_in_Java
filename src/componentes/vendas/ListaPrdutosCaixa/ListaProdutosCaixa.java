@@ -5,29 +5,40 @@ import java.util.List;
 
 import componentes.controleEstoque.produtoComponentes.produto.Produto;
 
+
 public class ListaProdutosCaixa {
-    
-    public List<Produto> produtos;
+    private List<Produto> produtosNoCaixa;
 
     public ListaProdutosCaixa() {
-        produtos = new ArrayList<>();
-    }
-
-    public void addProdutos(Produto produto, int quantidade) {
-        produtos.add(produto);
-        System.out.println("produto adicionado: " + produto);
-    }
-    public void listaProdutos() {
-        System.out.println("ListaProdutos: ");
-        for (Object produto : produtos){
-            System.out.println("- " + produto.toString());
-        }
-
+        produtosNoCaixa = new ArrayList<>();
     }
 
     public List<Produto> getProdutos() {
-        return produtos;
+        return produtosNoCaixa;
     }
 
-    
+    public void addProdutos(Produto produto, int quantidade) {
+        for (Produto p : produtosNoCaixa) {
+            if (p.getIdProduto().equals(produto.getIdProduto())) {
+                p.setQuantidadeProduto(p.getQuantidadeProduto() + quantidade);  // Atualiza quantidade no caixa
+                return;
+            }
+        }
+        produto.setQuantidadeProduto(quantidade);
+        produtosNoCaixa.add(produto);
+    }
+
+    public void removerProduto(Produto produto, int quantidade) {
+        for (Produto p : produtosNoCaixa) {
+            if (p.getIdProduto().equals(produto.getIdProduto())) {
+                int novaQuantidade = (int) (p.getQuantidadeProduto() - quantidade);
+                if (novaQuantidade <= 0) {
+                    produtosNoCaixa.remove(p);  // Remove o produto completamente se a quantidade for 0 ou negativa
+                } else {
+                    p.setQuantidadeProduto(novaQuantidade);  // Atualiza quantidade do produto
+                }
+                return;
+            }
+        }
+    }
 }
